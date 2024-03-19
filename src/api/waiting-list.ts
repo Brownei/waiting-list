@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const { name, email, country } = req.body;
 
   if (!name || !email || !country) {
-    return res.sendStatus(409);
+    return res.sendStatus(404);
   }
 
   try {
