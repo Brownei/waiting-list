@@ -4,17 +4,14 @@
   "description": " A basic starter for an express.js API with Typescript",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "lint": "eslint --fix src test",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "vercel-build": "echo hello"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "keywords": [],
   "author": "Brownson Esiti",
   "license": "MIT",
