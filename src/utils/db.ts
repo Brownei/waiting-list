@@ -2,36 +2,21 @@ require('dotenv').config();
 import { Sequelize } from 'sequelize';
 
 export function getDatabaseVariables() {
-  const host = process.env.MYSQL_HOST;
-  const port = Number(process.env.MYSQL_PORT);
-  const user = process.env.MYSQL_USER;
-  const password = process.env.MYSQL_PASSWORD;
-  const databaseName = process.env.MYSQL_DATABASE_NAME;
+  const url = process.env.POSTGRES_URL;
 
-  if ( !host || !port || !user || !password || !databaseName ) {
-    throw new Error('No variables for the MYSQL database!');
+  if ( !url ) {
+    throw new Error('No variables for the Postgres database!');
   }
 
   return {
-    host,
-    port,
-    user,
-    password,
-    databaseName,
+    url,
   };
 }
 
-export const sequelize = new Sequelize({
-  host: getDatabaseVariables().host,
-  dialect: 'mysql',
-  database: getDatabaseVariables().databaseName,
-  password: getDatabaseVariables().password,
-  port: getDatabaseVariables().port,
-  username: getDatabaseVariables().user,
-});
+export const sequelize = new Sequelize(getDatabaseVariables().url);
 
 sequelize.authenticate().then(() => {
-  console.log('Connection established with MYSQL database');
+  console.log('Connection established with Postgres database');
 }).catch((error: unknown) => {
-  console.log('Error establishing connection with MYSQL database', error);
+  console.log('Error establishing connection with Postgres database', error);
 });
