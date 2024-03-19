@@ -1,5 +1,5 @@
 import express from 'express';
-import WaitingList from './model';
+import { prisma } from '../utils/db';
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const { name, email, country } = req.body;
 
   try {
-    const alreadyInTheWaitingList = await WaitingList.findOne({
+    const alreadyInTheWaitingList = await prisma.waitingList.findUnique({
       where: {
         email,
       },
@@ -17,14 +17,15 @@ router.post('/', async (req, res) => {
       return res.sendStatus(409);
     } else {
 
-      await WaitingList.create({
-        name,
-        email,
-        country,
+      await prisma.waitingList.create({
+        data: {
+          name,
+          email,
+          country,
+        },
       });
   
       return res.sendStatus(201);
-
     }
 
   } catch (error) {
