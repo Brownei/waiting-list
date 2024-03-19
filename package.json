@@ -10,7 +10,8 @@
     "lint": "eslint --fix src test",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "vercel-build": "echo hello"
+    "vercel-build": "prisma generate && echo hello",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "Brownson Esiti",
