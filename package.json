@@ -10,7 +10,7 @@
     "lint": "eslint --fix src test",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "vercel-build": "echo hello",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "Brownson Esiti",
