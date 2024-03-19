@@ -6,6 +6,10 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   const { name, email, country } = req.body;
 
+  if (!name || !email || !country) {
+    return res.sendStatus(409);
+  }
+
   try {
     const alreadyInTheWaitingList = await prisma.waitingList.findUnique({
       where: {
