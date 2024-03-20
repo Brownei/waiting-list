@@ -10,7 +10,7 @@
     "lint": "eslint --fix src test",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "vercel-build": "prisma generate && echo hello",
+    "vercel-build": "prisma generate && prisma migrate deploy && echo hello",
     "postinstall": "prisma generate"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "helmet": "^7.1.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.9.2",
+    "nodemailer": "^6.9.13",
     "sequelize": "^6.37.1",
     "zod": "^3.22.4"
   },
@@ -34,6 +35,7 @@
     "@types/jest": "^29.5.10",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.10.0",
+    "@types/nodemailer": "^6.4.14",
     "@types/pg": "^8.11.3",
     "@types/supertest": "^2.0.16",
     "@typescript-eslint/eslint-plugin": "^6.13.1",

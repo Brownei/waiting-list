@@ -1,10 +1,12 @@
 import express from 'express';
 import { prisma } from '../utils/db';
+import { Emailer } from '../utils/emailer';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   const { name, email, country } = req.body;
+  const emailer = new Emailer(email, name);
 
   if (!name || !email || !country) {
     return res.sendStatus(404);
@@ -29,6 +31,7 @@ router.post('/', async (req, res) => {
         },
       });
   
+      emailer.notifyUserForJoiningWaitingList();
       return res.sendStatus(201);
     }
 
