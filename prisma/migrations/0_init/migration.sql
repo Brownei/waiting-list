@@ -12,3 +12,4 @@ CREATE TABLE "WaitingList" (
 -- CreateIndex
 CREATE UNIQUE INDEX "WaitingList_email_key" ON "WaitingList"("email");
 
+--End
