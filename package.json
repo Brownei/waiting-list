@@ -10,7 +10,7 @@
     "lint": "eslint --fix src test",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "vercel-build": "prisma format && prisma generate && prisma migrate deploy && echo hello",
+    "vercel-build": "prisma generate && prisma migrate deploy && echo hello",
     "postinstall": "prisma generate"
   },
   "keywords": [],
