@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
     });
     
     if (alreadyInTheWaitingList) {
-      return res.sendStatus(409);
+      return res.sendStatus(400);
     } else {
       const emailer = new Emailer(email, name, accessToken.token!);
 
