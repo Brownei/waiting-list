@@ -1,7 +1,6 @@
 import express from 'express';
 import { prisma } from '../utils/db';
 import { Emailer } from '../utils/emailer';
-import { google } from 'googleapis';
 
 const router = express.Router();
 
@@ -13,15 +12,6 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const oAuth2Client = new google.auth.OAuth2(
-      process.env.GOOGLE_CLIENT_ID,
-      process.env.GOOGLE_CLIENT_SECRET,
-      process.env.GOOGLE_REDIRECT_URL,
-    );
-    
-    oAuth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
-    
-    const accessToken = await oAuth2Client.getAccessToken();
     const alreadyInTheWaitingList = await prisma.waitingList.findUnique({
       where: {
         email,
@@ -31,7 +21,7 @@ router.post('/', async (req, res) => {
     if (alreadyInTheWaitingList) {
       return res.sendStatus(400);
     } else {
-      const emailer = new Emailer(email, name, accessToken.token!);
+      const emailer = new Emailer(email, name);
 
       await prisma.waitingList.create({
         data: {
