@@ -39,7 +39,7 @@ const joinedTheWaitingListTemplate = (email: string, name: string): MailOptions 
       </ol>
       <p>We appreciate your patience and trust in us. Please feel free to reach out if you have any questions or suggestions. We value your input and look forward to serving you.</p>
       <p>In the meantime, keep an eye on your inbox for exciting updates and announcements. Great things are on the horizon!</p>
-      <p>Warm regards,<br>Brownson Esiti<br>Co-Founder<br>4D Solutions</p>
+      <p>Warm regards,<br>4D Solutions</p>
     `,
   };
 };
@@ -55,7 +55,7 @@ export class Emailer {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        type: 'OAuth2',
+        type: 'OAUTH2',
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
